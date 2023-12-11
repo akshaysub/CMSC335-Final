@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Create Card</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <h1>CREATE YOUR OWN CARD</h1>
+    </header>
+
+    <br>
+    <form action="/generateCard" method="post"
+        onsubmit="return confirm('Confirm that the information you provided is correct.')">
+        <fieldset>
+            <legend><strong><em>General Information</em></strong></legend>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name">&nbsp;&nbsp;
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email">
+        </fieldset>
+        <fieldset>
+            <legend><strong><em>Card Details</em></strong></legend>
+            <label for="recipientName">Recipient Name: </label>
+            <input type="text" id="recipientName" name="recipientName">&nbsp;&nbsp;
+            <br>
+
+            <label for="image">Choose a background image:</label>
+            <select id="image" name="image">
+                <option value="newYearImage">Happiest Holidays and a Wonderful New Year!</option>
+                <option value="christmasImage">Merry Christmas!</option>
+                <option value="holidayImage">Season's Greetings to You and Yours!</option>
+                <option value="hanukkahImage">Happy Hanukkah!</option>
+            </select>
+            <br>
+
+            <label for="message">Choose a message:</label>
+            <select id="message" name="message">
+                <option value="happyHolidays">Happiest Holidays and a Wonderful New Year!</option>
+                <option value="merryChristmas">Merry Christmas!</option>
+                <option value="seasonsGreetings">Season's Greetings to You and Yours!</option>
+                <option value="hanukkah">Happy Hanukkah!</option>
+            </select>
+            <br>
+
+            <label>Personalized Text:</label><br>
+            <textarea rows="5" cols="70" name="cardMessage"></textarea><br>
+
+            <label for="signOffName">Sign-off Name: </label>
+            <input type="text" id="signOffName" name="signOffName">&nbsp;&nbsp;
+            
+        </fieldset>  
+        <br>
+        
+        <fieldset>
+            <input type="reset" value="Clear Form">
+            <input type="submit" value="Submit Information"> 
+        </fieldset>      
+    </form>
+
+
+</body>
+
+</html>
