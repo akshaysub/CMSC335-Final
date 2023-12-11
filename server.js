@@ -1,50 +1,78 @@
-process.stdin.setEncoding("utf-8");
-const express = require('express');
-const fetch = require('node-fetch');
+const http = require("http");
+const fs = require('fs');
 const path = require("path");
+const express = require("express");
+const fetch = require('node-fetch');
+const app = express(); 
+const bodyParser = require("body-parser");
+const port = 4000;
 require("dotenv").config({ path: path.resolve(__dirname, '.env') })
 
+process.stdin.setEncoding("utf8");
+console.log(`Web server is running at http://localhost:${port}`);
+const prompt = "Type stop to shutdown the server: ";
+process.stdout.write(prompt);
+process.stdin.on("readable", function () {
+  let dataInput = process.stdin.read();
+  if (dataInput !== null) {
+    let command = dataInput.trim();
+    if (command === "stop") {
+      console.log("Shutting down the server");
+      process.exit(0)
+    }
+    process.stdout.write(prompt);
+    process.stdin.resume();
+  }
+});
+
+// MongoDB stuff
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 const dbName = process.env.MONGO_DB_NAME;
 const collectionName = process.env.MONGO_COLLECTION;
 
-const bodyParser = require("body-parser");
-// create an express app
-const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.set("views", path.resolve(__dirname, "templates"));
-app.set("view engine", "ejs");
-
-const port = 4000
-
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${userName}:${password}@cluster0.c5oudhu.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-const apiBaseURL = "https://swapi.dev/api/people/";
 
+// API stuff
+const apiBaseURL = "https://img.bruzu.com/";
 
+// create an express app
+app.use(express.static(path.join(__dirname, "")));
 
-// create a route for the root path
 app.get('/', (request, response) => {
-    // send a response message
-    response.sendFile('home.html', { root: __dirname });
+    response.sendFile('index.html', { root: __dirname });
 });
 
-app.get('/form', (request, response) => {
-    response.sendFile('personForm.html', { root: __dirname });
+app.get('/createCard', (request, response) => {
+    response.sendFile('createCard.html', { root: __dirname });
 });
 
-app.get('/reviewForm', (request, response) => {
-    response.sendFile('reviewForm.html', { root: __dirname });
+app.get('/viewCard', (request, response) => {
+    response.sendFile('viewCardForm.html', { root: __dirname });
 });
 
-app.post('/form', async (request, response) => {
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.post('/generateCard', async (request, response) => {
     await submitForm(request, response);
-    const { name, age, charNum } = request.body;
-    response.sendFile('home.html', { root: __dirname });
+    let {name, email, recipientName, image, message, cardMessage} = request.body;
+    const variables = {
+        name:name,
+        email:email,
+        recipientName:recipientName,
+        message:message,
+        cardMessage:cardMessage,
+        image:image
+    }
+    insertapplications(client, dbName, collectionName, variables);
+    response.sendFile('index.html', { root: __dirname });
 });
+
+async function insertapplications(client, dbName, collectionName, newapplication) {
+    const result = await client.db(dbName).collection(collectionName).insertOne(newapplication);
+}
 
 async function submitForm(request, response) {
     const form = request.body;
@@ -60,16 +88,17 @@ async function submitForm(request, response) {
     }
 }
 
-app.post('/reviewForm', async (request, response) => {
+/*app.post('/viewCards', async (request, response) => {
     let result = await getOneForm(request, response);
-    const { name, age, charNum } = result;
-    fetch(apiBaseURL + charNum)
+    //const { name, email, recipientName, message, cardMessage } = result;
+    await logMovies();
+    fetch(apiBaseURL + "?backgroundImage=https://source.unsplash.com/U-Kty6HxcQc/500x500")
         .then(response => response.json())
         .then(data => {
             let characterName = data.name;
             response.render("reviewCharacter", { name, age, charNum, characterName });
-        })
-});
+        }) 
+}); */
 
 async function getOneForm(request, response) {
     let filter = {name: request.body.name};
@@ -86,18 +115,4 @@ async function getOneForm(request, response) {
     }
 }
 
-process.stdout.write(`Web server started and running at http://localhost:${port}\nType stop to shutdown the server: `);
-
-process.stdin.on('readable', () => {
-    let dataInput = process.stdin.read();
-    if (dataInput !== null) {
-        let command = dataInput.trim();
-        if (command === "stop") {
-            process.exit(0);
-        }
-    }
-}
-);
-
-// start the server on the specified port
 app.listen(port);
