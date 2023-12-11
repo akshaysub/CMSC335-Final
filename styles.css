@@ -1,3 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Quattrocento');
+
+body {
+    margin: 0;
+    font-family: 'Quattrocento', sans-serif;
+    line-height: 1.6;
+    background-color: #e4e0da;
+    text-align: center;
+    width: 900px;
+    padding: 20px;
+    font-size: 25px;
+}
+
+/* Header styles */
+header {
+    font-family: 'Oswald', sans-serif;
+    background-image: linear-gradient(to right, #D81E5B, #639284); 
+    font-size: 25px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: none;
+}
+
 h1 {
-    color: green;
+    margin: 0;
+    color: #e4e0da;
+    letter-spacing: 2px;
+}
+
+/* Section styles */
+section {
+    padding: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #D81E5B;
+}
+
+#viewCards {
+    border: 3px solid #D81E5B;
+    margin: 20px;
+    background-color: #639284;
+    border-radius: 20px;
+    border-style: dotted;
+    text-decoration: none;
+    color: white;
+}
+
+h3 a:link { 
+    color: white;
 }
