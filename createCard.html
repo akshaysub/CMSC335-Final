@@ -26,16 +26,37 @@
             <legend><strong><em>Card Details</em></strong></legend>
             <label for="recipientName">Recipient Name: </label>
             <input type="text" id="recipientName" name="recipientName">&nbsp;&nbsp;
-            <br>
+            <br><br>
 
             <label for="image">Choose a background image:</label>
-            <select id="image" name="image">
-                <option value="newYearImage">Happiest Holidays and a Wonderful New Year!</option>
-                <option value="christmasImage">Merry Christmas!</option>
-                <option value="holidayImage">Season's Greetings to You and Yours!</option>
-                <option value="hanukkahImage">Happy Hanukkah!</option>
-            </select>
             <br>
+
+            <figure>
+                <img src="images/holiday1.jpg" alt="Image 1">
+                <figcaption>Image #1</figcaption>
+            </figure>
+            <figure>
+                <img src="images/holiday2.jpg" alt="Image 1">
+                <figcaption>Image #2</figcaption>
+            </figure>
+            <figure>
+                <img src="images/holiday3.jpg" alt="Image 1">
+                <figcaption>Image #3</figcaption>
+            </figure>
+            <figure>
+                <img src="images/holiday4.jpg" alt="Image 1">
+                <figcaption>Image #4</figcaption>
+            </figure>
+            
+            <br>
+
+            <select id="image" name="image">
+                <option value="holiday1">Image #1</option>
+                <option value="holiday2">Image #2</option>
+                <option value="holiday3">Image #3</option>
+                <option value="holiday4">Image #4</option>
+            </select>
+            <br><br>
 
             <label for="message">Choose a message:</label>
             <select id="message" name="message">
@@ -44,10 +65,10 @@
                 <option value="seasonsGreetings">Season's Greetings to You and Yours!</option>
                 <option value="hanukkah">Happy Hanukkah!</option>
             </select>
-            <br>
+            <br><br>
 
-            <label>Personalized Text:</label><br>
-            <textarea rows="5" cols="70" name="cardMessage"></textarea><br>
+            <label>Personalized Text (Optional):</label><br>
+            <textarea rows="5" cols="70" name="cardMessage"></textarea><br><br>
 
             <label for="signOffName">Sign-off Name: </label>
             <input type="text" id="signOffName" name="signOffName">&nbsp;&nbsp;

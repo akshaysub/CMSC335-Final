@@ -54,3 +54,14 @@ section h2 {
 h3 a:link { 
     color: white;
 }
+
+img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintains aspect ratio */
+}
+
+figure { 
+    display: inline-block;
+    margin: 5px;
+    font-size: 15px;
+}
