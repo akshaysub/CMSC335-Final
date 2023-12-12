@@ -9,3 +9,4 @@
 
 1. Run `npm install` to install dotenv, ejs, express, mongodb, and node-fetch
 2. Run `node server.js` to start the app at localhost:4000
+3. Alternatively, click this link to view our application: https://card-generator-zg4o.onrender.com
