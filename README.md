@@ -1,7 +1,7 @@
 # Cheerful Card Creator
 
 ** NOTE TO GRADERS ** : Our project was unable to submit in the submit server due to being too big.
-    We deleted our server.js file when submitting this, but you can find all our files in this github link:
+    We deleted our server.js file when submitting it to the submit server, but you can find all our files in this github link:
     https://github.com/akshaysub/CMSC335-Final
 
 1. Team Members: Jaskaran Gill (jgill12), Akshay Subramaniam (asubram), Sriya Sogal (ssogal)
