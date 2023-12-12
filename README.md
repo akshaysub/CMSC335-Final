@@ -1,9 +1,9 @@
 # Cheerful Card Creator
 
 1. Team Members: Jaskaran Gill (jgill12), Akshay Subramaniam (asubram), Sriya Sogal (ssogal)
-2. App Description:
+2. App Description: This app allows you to customize a holiday card and displays your personalized card!
 3. API Link: https://docs.bruzu.com/
-4. Youtube Demo: 
+4. Youtube Demo: https://www.youtube.com/watch?v=XLfrac3iYGA
 
 ## Instructions
 
